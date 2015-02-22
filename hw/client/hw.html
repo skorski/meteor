@@ -1,0 +1,45 @@
+<head>
+  <title>simple-todos</title>
+</head>
+
+<body>
+	<div class="container">
+		<header>
+			<h1> Todo List </h1>
+			<label class="remaining">
+				<p> ({{incompleteCount}}) tasks remain.</p>
+			</label>
+
+			<label class="hide-completed">  
+				<input type="checkbox" checked="{{hideCompleted}}" class="toggle-checked" />
+				Hide Completed Tasks
+			</label>
+			
+			{{> loginButtons}}
+			
+			{{#if currentUser}}
+				<form class="new-task"> 
+					<input type="text" name="text" placeholder="Type text to add new task"/>
+				</form>
+			{{/if}}
+
+		</header>
+
+		<ul>
+      {{#each tasks}}
+        {{> task}}
+      {{/each}}
+		</ul>
+	</div>
+</body>
+
+<template name="task">
+	<li class="{{#if checked}}checked{{/if}}">
+		<button class="delete">&times;</button>
+
+		<input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+		
+		<span class="text"><strong>{{username}}</strong> - {{text}}</span>
+
+	</li>
+</template>
