@@ -1,8 +1,7 @@
-recipesdata = new Mongo.Collection('RecipesData');
+RecipesDataStore = new Mongo.Collection('RecipesData');
 
-recipesdata.allow({
+RecipesDataStore.allow({
   insert: function(userID, recipe) {
-
     return recipe;
   }
 });
@@ -15,19 +14,26 @@ if (Meteor.isClient){
     // });
 }
 
-recipesdata.latest = function() {
-  return RecipesDataStore.find({}, {sort: {date: -1}, limit: 1});
-}
+// RecipesDataStore.latest = function() {
+//   return RecipesDataStore.find({}, {sort: {date: -1}, limit: 1});
+// }
+
+
+Template.recipes.helpers({
+  RecipesData: function() {
+    return RecipesDataStore.find({});
+  }
+});
 
 if (Meteor.isServer) {
-    Meteor.publish("recipesdata", function () {
-      return recipesdata.find({});
+    Meteor.publish("RecipesData", function () {
+      return RecipesDataStore.find({});
     });
 }
 
 // Initialize a seed activity
 Meteor.startup(function() {
-    recipesdata.insert({
+    RecipesDataStore.insert(1, {
       name: "spring-fromage-fort",
       ingredients: [
          "8 ounces (225g) cheese pieces, hard rinds removed",

@@ -21,14 +21,14 @@
       </div>
 
       <div class="btns-group">
-        <a class="btn-secondary {{#if isActiveTab 'make'}}active{{/if}} {{#if isActiveTab 'recipe'}}no-state{{/if}} js-show-recipe">Make It</a>
+        <a class="btn-secondary {{#if isActiveTab 'make'}}active{{/if}} {{#if isActiveTab 'recipe'}}no-state{{/if}} js-show-recipe">Share It</a>
         <a class="btn-secondary {{#if isActiveTab 'feed'}}active{{/if}} {{#if isActiveTab 'recipe'}}no-state{{/if}} js-show-feed">Pictures</a>
       </div>
     </div>
 
 
     <div class="content-scrollable static-nav make-scrollable">
-      <a class="btn-tertiary js-share"><span class="icon-camera"></span> Share that you made this</a>
+      <a class="btn-tertiary js-share"><span class="icon-camera"></span> Share that you had it</a>
 
       <h2 class="list-title">Ingredients</h2>
       <ul class="list-ingredients">
@@ -52,14 +52,14 @@
     </div>
 
     <div class="content-scrollable static-nav feed-scrollable">
-      <a class="btn-tertiary js-share"><span class="icon-camera"></span> Share that you made this</a>
+      <a class="btn-tertiary js-share"><span class="icon-camera"></span> Share that you had this</a>
       <div class="list-activities">
         {{#each activities}}
           {{> activity}}
         {{else}}
           <div class="wrapper-message">
             <div class="title-message">No feed activity yet</div>
-            <div class="subtitle-message">Be the first to share that you made this recipe. <a class="js-share">Share now</a></div>
+            <div class="subtitle-message">Be the first to share that you had it. <a class="js-share">Share now</a></div>
           </div>
         {{/each}}
       </div>
