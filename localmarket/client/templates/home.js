@@ -20,3 +20,17 @@ Template.home.helpers({
     return News.latest();
   }
 });
+
+
+Template.home.openTasks = function () {
+  return Tasks.find({});
+}
+
+Template.home.events({
+  'submit .new-task': function(event) {
+    var text = event.target.text.value;
+    Meteor.call('addtask', text);
+    event.target.text.value = "";
+    return false;
+  }
+});
