@@ -18,19 +18,27 @@ Template.home.helpers({
   
   latestNews: function() {
     return News.latest();
+  },
+
+  openTasks: function() {
+    console.log('Tried to render openTasks');
+    return Tasks.all();
   }
 });
 
 
-Template.home.openTasks = function () {
-  return Tasks.find({});
-}
-
 Template.home.events({
   'submit .new-task': function(event) {
     var text = event.target.text.value;
-    Meteor.call('addtask', text);
+    console.log('trying to add ' + text);
+    Meteor.call('addTask', text);
+    Tasks.insert({
+      text: text, 
+      createdAt: new Date()
+    });
+    console.log("tried 2 ways to add.")
     event.target.text.value = "";
+
     return false;
   }
 });
