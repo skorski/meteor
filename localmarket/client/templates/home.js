@@ -22,7 +22,7 @@ Template.home.helpers({
 
   openTasks: function() {
     console.log('Tried to render openTasks');
-    return Tasks.all();
+    return Tasks.find({}, {sort: {createdAt: -1}});
   }
 });
 
@@ -32,13 +32,7 @@ Template.home.events({
     var text = event.target.text.value;
     console.log('trying to add ' + text);
     Meteor.call('addTask', text);
-    Tasks.insert({
-      text: text, 
-      createdAt: new Date()
-    });
-    console.log("tried 2 ways to add.")
     event.target.text.value = "";
-
-    return false;
+    return true;
   }
 });

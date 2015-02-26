@@ -7,6 +7,7 @@ dataReadyHold = null;
 if (Meteor.isClient) {
   Meteor.subscribe('news');
   Meteor.subscribe('bookmarkCounts');
+  Meteor.subscribe('tasks');
   feedSubscription = Meteor.subscribe('feed');
 }
 
