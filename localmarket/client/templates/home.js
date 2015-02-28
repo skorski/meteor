@@ -22,10 +22,9 @@ Template.home.helpers({
 
   openTasks: function() {
     console.log('Tried to render openTasks');
-    return Tasks.find({}, {sort: {createdAt: -1}});
+    return Tasks.find({}, {sort: {createdAt: -1}}).fetch();
   }
 });
-
 
 Template.home.events({
   'submit .new-task': function(event) {

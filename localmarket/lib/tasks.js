@@ -11,12 +11,12 @@ Tasks = new Mongo.Collection('tasks');
 
 
 Tasks.latest = function() {
-	console.log("latest " + Tasks.findOne({}, {sort: {date: -1}, limit: 1}))
-  return Tasks.findOne({}, {sort: {date: -1}, limit: 1});
+	console.log("latest " + Tasks.findOne({}, {sort: {createdAt: -1}, limit: 1}))
+  return Tasks.findOne({}, {sort: {createdAt: -1}, limit: 1});
 }
 
 Tasks.all = function() {
-	console.log("Tasks.all function: " + Tasks.findOne({}, {sort: {date: -1}, limit: 1}));
+	console.log("Tasks.all function: " + Tasks.findOne({}, {sort: {createdAt: -1}, limit: 1}));
   return Tasks.find({});
 }
 

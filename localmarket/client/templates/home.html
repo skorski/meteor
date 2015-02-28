@@ -33,11 +33,9 @@
 
       <form class="new-task"> 
        <input type="text" name="text" placeholder="Suggest Item"/>
-       <input type="button" name="submit" text="submit"/>
       </form>  
 
       {{#each openTasks}}
-        <p> there is a task </p>
         {{> task}}
       {{else}}
         <p> There are no suggestions </p>
