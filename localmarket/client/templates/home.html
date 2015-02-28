@@ -34,14 +34,14 @@
       <form class="new-task"> 
        <input type="text" name="text" placeholder="Suggest Item"/>
       </form>  
+      
+      <a href="{{pathFor 'feed'}}" class="btn-primary">Give us suggestions</a>
+        <div class="callout-news">
+            <span class="title-callout">Next Task</span>
+            <span> {{nextTask.text}} </span>
+        </div>
 
-      {{#each openTasks}}
-      	<div class="callout-news">
-	  {{> task}}
-	</div>
-      {{else}}
-        <p> There are no suggestions </p>
-      {{/each}}
+      {{> beers}}
 
       <a href="{{pathFor 'feed'}}" class="btn-primary">See what's cooking</a>
 

@@ -20,8 +20,8 @@ Template.home.helpers({
     return News.latest();
   },
 
-  openTasks: function() {
-    return Tasks.all();
+  nextTask: function() {
+    return Tasks.mostWanted();
   }
 });
 
@@ -30,9 +30,13 @@ Template.home.events({
     var text = event.target.text.value;
     Meteor.call('addTask', text);
     event.target.text.value = "";
+
+    // this is where the return false needs to be otherwise the page will reload
+    return false;
   },
   'submit .new-beverage': function(event) {
     var text = event.target.text.value;
     event.target.text.value = "";
+    return false;
   }
 });
