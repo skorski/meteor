@@ -13,7 +13,6 @@ fastclick
 accounts-twitter
 service-configuration
 oauth1
-insecure
 launch-screen
 
 # Packages from Atmosphere:

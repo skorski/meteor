@@ -36,7 +36,9 @@
       </form>  
 
       {{#each openTasks}}
-        {{> task}}
+      	<div class="callout-news">
+	  {{> task}}
+	</div>
       {{else}}
         <p> There are no suggestions </p>
       {{/each}}

@@ -26,6 +26,7 @@ Meteor.methods({
 		console.log("adding " + textVal + " to db.");
 		Tasks.insert({
 			text: textVal, 
+      votes: 0,
 			createdAt: new Date()
 		});
 		console.log(Tasks.find({}, {text: textVal}));

@@ -21,17 +21,18 @@ Template.home.helpers({
   },
 
   openTasks: function() {
-    console.log('Tried to render openTasks');
-    return Tasks.find({}, {sort: {createdAt: -1}}).fetch();
+    return Tasks.find({}, {sort: {createdAt: -1}, limit: 5}).fetch();
   }
 });
 
 Template.home.events({
   'submit .new-task': function(event) {
     var text = event.target.text.value;
-    console.log('trying to add ' + text);
     Meteor.call('addTask', text);
     event.target.text.value = "";
-    return true;
+  },
+  'submit .new-beverage': function(event) {
+    var text = event.target.text.value;
+    event.target.text.value = "";
   }
 });
