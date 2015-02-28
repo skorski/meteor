@@ -23,7 +23,7 @@ Meteor.publish('recipe', function(name) {
 });
 
 Meteor.publish('tasks', function() {
-  return Tasks.find({}, {sort: {date: -1}, limit: 10});
+  return Tasks.all();
 });
 
 // autopublish the user's bookmarks and admin status

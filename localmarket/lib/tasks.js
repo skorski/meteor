@@ -1,13 +1,13 @@
 Tasks = new Mongo.Collection('tasks');
 
-// Tasks.allow({
-//   insert: function() {
-//   	return true;
-//   },
-//   update: function() { 
-//   	return true;
-//   }
-// });
+ Tasks.allow({
+   insert: function() {
+   	return true;
+   },
+   update: function() { 
+   	return true;
+   }
+ });
 
 
 Tasks.latest = function() {
@@ -16,7 +16,8 @@ Tasks.latest = function() {
 }
 
 Tasks.all = function() {
-	console.log("Tasks.all function: " + Tasks.findOne({}, {sort: {createdAt: -1}, limit: 1}));
+u
+	console.log("Tasks.all function: " + Tasks.findOne({}, {sort: {createdAt: -1}, limit: 5}));
   return Tasks.find({});
 }
 

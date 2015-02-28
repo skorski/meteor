@@ -21,7 +21,7 @@ Template.home.helpers({
   },
 
   openTasks: function() {
-    return Tasks.find({}, {sort: {createdAt: -1}, limit: 5}).fetch();
+    return Tasks.all();
   }
 });
 
