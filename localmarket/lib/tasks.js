@@ -9,6 +9,10 @@ Tasks = new Mongo.Collection('tasks');
  //   }
  // });
 
+Tasks.deny({
+	remove: function() { return false; }
+})
+
 
 Tasks.latest = function() {
   return Tasks.latest();
@@ -28,11 +32,18 @@ Meteor.methods({
 		Tasks.insert({
 			text: textVal, 
       votes: 0,
+      sortText: textVal.toLowerCase(),
 			createdAt: new Date()
 		});
 	// console.log(Tasks.find({}, {text: textVal})).fetch();
 	// we need to return false here otherwise the page will refresh
 	return false;
-	}
+	},
+	deleteTask: function(taskId) {
+		Tasks.remove(taskId);
+	},
+	taskUpvote: function (taskId) {
+		Tasks.update(taskId, { $inc: {votes: 1}});
+  }
 
 });

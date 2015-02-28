@@ -73,6 +73,7 @@ AdminController = RouteController.extend({
 Router.map(function() {
   this.route('home', {path: '/'});
   this.route('feed');
+  this.route('suggestions');
   this.route('recipes');
   this.route('bookmarks');
   this.route('about');

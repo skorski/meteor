@@ -1,0 +1,62 @@
+<template name="suggestions">
+  <div class="page suggestions">
+
+    {{>nav title="Suggest Items"}}
+
+    <div class="content-scrollable">
+      <div class="list-activities {{#unless ready}}loading{{/unless}}">
+        {{#if ready}}
+          <a href="{{pathFor 'suggestions'}}" class="btn-primary">Tasks</a>
+            <form class="new-task"> 
+             <input type="text" name="text" placeholder="Suggest Item"/>
+            </form>
+            <table>
+              <thead>
+                <tr>
+                  <td> Delete </td>
+                  <td> Up </td>
+                  <td class="list-item"> Task </td>
+                  <td class="list-votes"> Votes </td>
+                </tr>
+              </thead>
+              <tbody>    
+              {{#each openTasks}}
+                {{> taskBlock}}
+              {{/each}}
+              </tbody>
+            </table>
+          <a href="" class="btn-primary">Beer</a>
+            <form class="new-task"> 
+             <input type="text" name="text" placeholder="Suggest Item"/>
+            </form>   
+
+          <a href="" class="btn-primary">Cookies</a>
+            <form class="new-task"> 
+             <input type="text" name="text" placeholder="Suggest Item"/>
+            </form>  
+
+          <a href="" class="btn-primary">Pasta</a>
+            <form class="new-task"> 
+             <input type="text" name="text" placeholder="Suggest Item"/>
+            </form>    
+
+
+        {{else}}
+          <div class="wrapper-message">
+            <div class="icon-sync"></div>
+            <div class="title-message">Loading</div>
+          </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="taskBlock">
+  <tr class="list-block">
+    <td> <button class="delete">Delete</button> </td>
+    <td> <button class="upvote">+1</button> </td>
+    <td> <span >{{text}}</span> </td>
+    <td class="list-votes"> <span>{{votes}}</span> </td>
+  </tr>
+</template>
