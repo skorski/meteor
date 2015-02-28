@@ -10,13 +10,15 @@
 <form class="new-task">
   <input type="text" name="text" placeholder="type here"/>
 </form>
-  {{#each tasks}}
-    {{> tasks}}
+  {{#each taskList}}
+    {{> task}}
   {{/each}}
 </body>
 
-<template name="tasks">
-  {{text}}  
+<template name="task">
+ <li>
+  <p>{{text}}</p>  
+ </li>
 </template>
 
 <template name="hello">

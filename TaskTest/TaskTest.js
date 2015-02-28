@@ -9,12 +9,20 @@ if (Meteor.isClient) {
       return Session.get('counter');
     }
   });
+  
+  Template.body.helpers({
+	taskList: function() {
+		return Tasks.all();
+	}
+  });
 
   Template.hello.events({
     'click button': function () {
       // increment the counter when button is clicked
       Session.set('counter', Session.get('counter') + 1);
-    },
+    }
+  });
+  Template.body.events({
     'submit .new-task': function(event){
       var text = event.target.text.value;
       console.log('ready to call for ' + text);
@@ -38,7 +46,7 @@ Tasks.allow ({
 });
 
 Tasks.all = function() {
-  return Tasks.find({}, {sort: {createdAt: -1}});
+  return Tasks.find({}, {sort: {createdAt: -1}}).fetch();
 }
 
 Meteor.methods({
