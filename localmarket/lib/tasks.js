@@ -16,9 +16,7 @@ Tasks.latest = function() {
 }
 
 Tasks.all = function() {
-u
-	console.log("Tasks.all function: " + Tasks.findOne({}, {sort: {createdAt: -1}, limit: 5}));
-  return Tasks.find({});
+  return Tasks.find({}, {sort: {createdAt: -1, limit: 5}});
 }
 
 
