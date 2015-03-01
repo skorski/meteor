@@ -1,6 +1,47 @@
+Meteor.startup(function() {
+
+});
+
 Template.suggestions.helpers({
 	openTasks: function () {
-		return Tasks.find({}, {sort: {sortText: 1, createdAt: -1}}).fetch();
+		return Tasks.find({}, {sort: {votes: -1, createdAt: -1}}).fetch();
+	},
+	taskList: function (){
+		return Tasks.find({}, {sort: {votes: -1, createdAt: -1}});
+	},
+	settings: function (){
+		return {
+            rowsPerPage: 10,
+            showFilter: true,
+            fields: [
+            		{
+            			fieldID: 'delete',
+            			key: 'delete',
+            			label: '',
+            			fn: function() {return new Spacebars.SafeString(
+            			            				'<i class="fa fa-trash-o delete"></i>')
+            										}
+            		},
+            		{
+            			fieldID: 'upvote',
+            			key: 'upvote',
+            			label: '',
+            			fn: function() {return new Spacebars.SafeString(
+            			            				'<i class="fa fa-thumbs-up upvote"></i>')
+            										}
+            		},            		
+            		{
+            			fieldID: 'task',
+            			key: 'text',
+            			label: 'Task'
+            		},
+            		{
+            			fieldID: 'votes',
+            			key: 'votes',
+            			label: 'votes'
+            		}            		
+						]
+        };
 	},
 	ready: function() {
     return true;

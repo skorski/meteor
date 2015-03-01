@@ -13,10 +13,11 @@
             <table>
               <thead>
                 <tr>
-                  <td> Delete </td>
-                  <td> Up </td>
-                  <td class="list-item"> Task </td>
-                  <td class="list-votes"> Votes </td>
+                  <td width="10%"> </td>
+                  <td class="delete-col" width="10%"> </td>
+                  <td class="up-col" width="14%"> </td>
+                  <td class="list-item" width="60%"> Task </td>
+                  <td class="list-votes" width="15%" align="center"> Votes </td>
                 </tr>
               </thead>
               <tbody>    
@@ -25,6 +26,11 @@
               {{/each}}
               </tbody>
             </table>
+
+          {{> reactiveTable collection=taskList settings=settings}}
+
+          {{> reactiveTable collection=openTasks settings=settings}}
+
           <a href="" class="btn-primary">Beer</a>
             <form class="new-task"> 
              <input type="text" name="text" placeholder="Suggest Item"/>
@@ -54,9 +60,10 @@
 
 <template name="taskBlock">
   <tr class="list-block">
-    <td> <button class="delete">Delete</button> </td>
-    <td> <button class="upvote">+1</button> </td>
-    <td> <span >{{text}}</span> </td>
-    <td class="list-votes"> <span>{{votes}}</span> </td>
+    <td> </td>
+    <td> <i class="fa fa-trash-o delete"></i> </td>
+    <td> <i class="fa fa-thumbs-up upvote"></i> </td>
+    <td>{{text}}</td>
+    <td class="list-votes" align="center">{{votes}}</td>
   </tr>
 </template>

@@ -19,7 +19,7 @@ Tasks.latest = function() {
 }
 
 Tasks.mostWanted = function() {
-	return Tasks.findOne({}, {sort: {createdAt: -1}, limit: 1});
+	return Tasks.findOne({}, {sort: {votes: -1, createdAt: -1}, limit: 1});
 }
 
 Tasks.all = function() {
