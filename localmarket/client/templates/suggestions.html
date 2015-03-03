@@ -1,35 +1,23 @@
 <template name="suggestions">
   <div class="page suggestions">
+    <div class="content-scrollable-not">
 
-    {{>nav title="Suggest Items"}}
+    {{>nav title="Suggest Items" back=true}}
 
     <div class="content-scrollable">
       <div class="list-activities {{#unless ready}}loading{{/unless}}">
         {{#if ready}}
+            {{> nav title="Task Suggestions"}}
           <a href="{{pathFor 'suggestions'}}" class="btn-primary">Tasks</a>
             <form class="new-task"> 
              <input type="text" name="text" placeholder="Suggest Item"/>
             </form>
-            <table>
-              <thead>
-                <tr>
-                  <td width="10%"> </td>
-                  <td class="delete-col" width="10%"> </td>
-                  <td class="up-col" width="14%"> </td>
-                  <td class="list-item" width="60%"> Task </td>
-                  <td class="list-votes" width="15%" align="center"> Votes </td>
-                </tr>
-              </thead>
-              <tbody>    
-              {{#each openTasks}}
-                {{> taskBlock}}
-              {{/each}}
-              </tbody>
-            </table>
+            
+            {{> reactiveTable collection=openTasks settings=settings}}
 
-          {{> reactiveTable collection=taskList settings=settings}}
-
-          {{> reactiveTable collection=openTasks settings=settings}}
+            {{#each openTasks}}
+              {{> taskBlock}}
+            {{/each}}
 
           <a href="" class="btn-primary">Beer</a>
             <form class="new-task"> 
@@ -56,9 +44,10 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 
-<template name="taskBlock">
+<template name="taskList">
   <tr class="list-block">
     <td> </td>
     <td> <i class="fa fa-trash-o delete"></i> </td>
@@ -66,4 +55,22 @@
     <td>{{text}}</td>
     <td class="list-votes" align="center">{{votes}}</td>
   </tr>
+</template>
+
+<template name="taskBlock">
+<p> taskBlock render</p>
+  <a class="item-task">
+    <span class="attribution-task">
+      <span class="title-task">{{text}}</span>
+      <span class="metadata-task">
+        <span class="author-task">{{username}}</span>
+        <span class="bookmarks-task">
+          <span class="icon-bookmark"></span>
+          {{votes}}
+        </span>
+        <i class="fa fa-trash-o delete"></i>
+        <i class="fa fa-thumbs-up upvote"></i>
+      </span>
+    </span>
+  </a>
 </template>

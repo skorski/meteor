@@ -12,7 +12,8 @@ Template.suggestions.helpers({
 	settings: function (){
 		return {
             rowsPerPage: 10,
-            showFilter: true,
+            showFilter: false,
+            showNavigationRowsPerPage: false,
             fields: [
             		{
             			fieldID: 'delete',
@@ -29,6 +30,13 @@ Template.suggestions.helpers({
             			fn: function() {return new Spacebars.SafeString(
             			            				'<i class="fa fa-thumbs-up upvote"></i>')
             										}
+            		},
+            		{
+            			fieldID: "createdAt",
+            			key: 'createdAt',
+            			label: 'time',
+            			// new Spacebars.SafeString('<i class="fa fa-clock-o "></i>'),
+            			fn: function() {return ''}
             		},            		
             		{
             			fieldID: 'task',
@@ -38,7 +46,7 @@ Template.suggestions.helpers({
             		{
             			fieldID: 'votes',
             			key: 'votes',
-            			label: 'votes'
+            			label: 'Votes'
             		}            		
 						]
         };
@@ -48,7 +56,6 @@ Template.suggestions.helpers({
   }
 });
 
-
 Template.suggestions.events({
 	'submit .new-task': function(event) {
     var text = event.target.text.value;
@@ -57,15 +64,30 @@ Template.suggestions.events({
     // this is where the return false needs to be otherwise the page will reload
     return false;
   },
-  "click .delete": function() {
-  		Meteor.call("deleteTask", this._id);
-  		// console.log("tried to delete " + this._id);
+  "click .reactive-table tr .delete": function(event) {
+
   },
-  "click tr": function() {
-  		Session.set('selected_task',this._id);
-  		// Meteor.call('taskUpvote',this._id);
+  "click .reactive-table tr": function(event) {
+  		Session.set('selected_task', this._id);
+  		// console.log('session set to ' + this._id);
+  		// console.log('switching on ' + event.target.className);
+
+  		classes = event.target.className.split(' ');
+
+  		switch(_.last(classes)) {
+  			case "delete":
+  				Meteor.call("deleteTask", this._id);
+  				// console.log("tried to delete " + this._id);
+  				break;
+  			case "upvote":
+ 					Meteor.call('taskUpvote', this._id);
+ 					// console.log("clicked upvote for " + this._id);  	
+ 					break;	
+ 				default:
+ 					// console.log('event class ' + event.target.className);
+  		}
   },
-  "click .upvote": function() {
-  	Meteor.call('taskUpvote', this._id);
+  "click .reactive-table tr .upvote": function(event) {
+
   }
 });

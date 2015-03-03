@@ -33,6 +33,8 @@ Meteor.methods({
 			text: textVal, 
       votes: 0,
       sortText: textVal.toLowerCase(),
+      owner: Meteor.userId(),
+      username: Meteor.user().username,
 			createdAt: new Date()
 		});
 	// console.log(Tasks.find({}, {text: textVal})).fetch();

@@ -1,9 +1,8 @@
 <template name="home">
   <div class="page home">
-
+    <div class="content-scrollable">
     {{>nav title='Lighthouse Kitchen' black=true}}
 
-    <div class="content-scrollable">
       <div class="bg-image home">
         <h1 class="title-home">
           <img src="img/app/logo-local.svg" alt="Lighthouse Market"/>
@@ -12,6 +11,14 @@
         Mon–Fri 5-8pm, Sat 10-5pm</span>
         <span class="arrow"></span>
       </div>
+
+    {{#if currentUser}}
+    {{else}}
+      <div id="loginArea" class="btn-primary">
+        {{> loginButtons align="center" class="btn-primary" }}
+      </div>
+    {{/if}}
+
 
       <div class="callout-news">
         <span class="title-callout">News</span>
@@ -31,17 +38,15 @@
         {{/each}}
       </div>
 
-      <form class="new-task"> 
-       <input type="text" name="text" placeholder="Suggest Item"/>
-      </form>  
-      
+      {{#if currentUser}}
       <a href="{{pathFor 'suggestions'}}" class="btn-primary">Give us suggestions</a>
-        <div class="callout-news">
-            <span class="title-callout">Next Task</span>
-            <span> {{nextTask.text}} </span>
-        </div>
+      {{/if}}
 
-      {{> beers}}
+      <div class="callout-news">
+          <span class="title-callout">Next Task</span>
+          <span> {{nextTask.text}} </span>
+      </div>
+
 
       <a href="{{pathFor 'feed'}}" class="btn-primary">See what's cooking</a>
 
