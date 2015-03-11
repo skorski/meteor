@@ -14,4 +14,10 @@ if (Meteor.isClient) {
       Session.set('counter', Session.get('counter') + 1);
     }
   });
+
+  Template.ideaBlock.helpers({
+    ideas: function () {
+      return Ideas.find({}, {sort: {votes: -1, createdAt: -1}}).fetch();
+    }
+  });
 }
