@@ -50,11 +50,47 @@ This will start the download for the basic meteor app.
 			move all default files into the client folder.  This means the code will only run client side.
 			- clean up the code because this now won't run server side code.
 			- add a new h1 tag for awesome ideas
+	
+		deploy to our test space
+				meteor deploy ideafunnel.meteor.com
+			- notice meteor is handeling everything for us at this point.  It even minifies all of the code.
 
-	b) 
+
+5) Create a form so people can submit ideas.
+	a) again, we are going to start simple.  Let's do what meteor does best, reuse code.
+			autoform is a popular package that will help us generate forms
+			meteor add aldeed:autoform
+			https://atmospherejs.com/aldeed/autoform
+		show where the package shows up (.meteor/packages)
+			for this to work we will also need to give it some information on the data
+					meteor add aldeed:collection2
+				go back to the .js file to define a basic schema
+					Ideas.attachSchema
+
+		Now two other things:
+				- create something to render the ideas
+						- this has to be a template with each
+				- add a helper to render all of the current ideas
+
+6) At this point we have a very basic setup
+	- lets add some routes so things can make a bit more sense
+
+	- install iron router
+		- http://www.manuel-schoebel.com/blog/iron-router-tutorial
+		- meteor.add iron:router
+	- add the router.js file into /lib
 
 
-
+Things to cover
+- Styling
+	- http://blog.differential.com/the-easy-way-to-add-material-design-to-your-meteor-app/
+- User accounts
+- adding descriptions
+- router fields to show details of each idea
+- add a person to the team
+- allow comments for each of the ideas
+- adding images for the projects with the catAPI
+		- http://thecatapi.com/api/images/get?format=html&results_per_page=1
 
 	- Now we create something to add an idea
 		- need to create a few helper functions
