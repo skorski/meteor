@@ -1,17 +1,25 @@
-<head>
-  <title>ideafunnel</title>
-</head>
+<template name="home">
+	<head>
+	  <title>Idea Funnel</title>
+	</head>
 
-<body>
-  <h1>Welcome to Meteor!</h1>
+	<body>
+		<div class="header">
+			page header
+		</div>
 
-  {{> hello}}
+		<div class="">
+	  <h1> Add an Awesome Idea </h1>
+	  </div>
 
-  <h1> Add an Awesome Idea </h1>
-		{{> quickForm collection="Ideas" id="insertIdeaForm" type="insert"}}
-	
-	{{> ideaBlock}}
-</body>
+	  <div class="">
+			{{> quickForm collection="Ideas" id="insertIdeaForm" type="insert"}}
+		</div>	
+
+		{{> ideaBlock}}
+		
+	</body>
+</template>
 
 <template name="hello">
   <button>Click Me</button>
@@ -25,7 +33,8 @@
 		{{/each}}
 </template>
 
-
 <template name="idea">
-	<li> {{title}} </li>
+	<li>
+		<a href="{{pathFor 'ideasList'}}"> {{title}} </a>
+	</li>
 </template>
