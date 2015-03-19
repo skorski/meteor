@@ -14,10 +14,27 @@
   </div>
 
 	{{> ideaDetail}}
-	
+		
 </body>
 </template>
 
 <template name="ideaDetail">
-	Rendering idea detail page
+	{{id}}
+	<h2> {{title}} </h2>
+
+	<form class="new-task">
+		<input type="text" name="comment" ideaId={{id}} placeholder="Add Comment"/>
+	</form>
+
+	<h2> Comments </h2>
+	{{# each comments}}
+			{{> commentRender}}
+	{{/each}}
+
+</template>
+
+<template name="commentRender">
+		<li>
+				{{comment}} <i class="fa fa-plus-circle" id='addComment'></i>
+		</li>
 </template>

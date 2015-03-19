@@ -1,4 +1,4 @@
-var Comments = new Mongo.Collection('comments');
+Comments = new Mongo.Collection('comments');
 
 Comments.allow({
 	insert: function() {
@@ -16,18 +16,19 @@ Comments.allow({
 
 Meteor.methods ({
 	addComment: function(comment, ideaId) {
-		Ideas.insert({
-			title: comment,
+		Comments.insert({
+			comment: comment,
 			ideaId: ideaId,
 			votes: 0,
 			createdAt: new Date()
 			});
-		console.log("New Comment Inserted: " + idea);
+		console.log("New Comment Inserted: " + ideaId);
+
 	},
 	removeComment: function(ideaID) {
-		Ideas.remove(ideaID);
+		Comments.remove(ideaID);
 	},
 	upvoteComment: function(ideaID) {
-		Ideas.update(ideaID, {$inc: {votes: 1}});
+		Comments.update(ideaID, {$inc: {votes: 1}});
 	}
 });
