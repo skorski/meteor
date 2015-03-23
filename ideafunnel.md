@@ -79,14 +79,23 @@ This will start the download for the basic meteor app.
 		- http://www.manuel-schoebel.com/blog/iron-router-tutorial
 		- meteor.add iron:router
 	- add the router.js file into /lib
+	- router fields to show details of each idea
+	- Now we have routes and a detail page for each of the ideas.
+
+7) styling
+	- Meteor was built for rapid prototyping.  We can also do amazing things for styling
+	- Implementing fameo.us
+
+
+
 
 
 Things to cover
 - Styling
 	- http://blog.differential.com/the-easy-way-to-add-material-design-to-your-meteor-app/
+	- meteor add natestrauser:font-awesome
 - User accounts
 - adding descriptions
-- router fields to show details of each idea
 - add a person to the team
 - allow comments for each of the ideas
 - adding images for the projects with the catAPI

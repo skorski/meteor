@@ -4,24 +4,32 @@
 	</head>
 
 	<body>
-		<div class="header">
-			page header
-		</div>
-
-		<div class="">
-	  <h1> Add an Awesome Idea </h1>
-	  </div>
-
-	  <div class="">
-			{{> quickForm collection="Ideas" id="insertIdeaForm" type="insert"}}
-		</div>	
-
-		{{> ideaBlock}}
 		
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="page-header">
+						<a class="btn btn-success pull-right" href="" role="button">Add Idea </a>
+					<h1><a href="/">Awesome Ideas </a></h1>
+					</div>
+				</div>
+			</div>
+
+		<div class="col-md-6 col-md-offset-2">
+				{{> ideaBlock}}
+		</div>		
+		
+		</div>
 	</body>
 </template>
 
 <template name="hello">
+
+{# 		  <div class="panel-body">
+				{{> quickForm collection="Ideas" id="insertIdeaForm" type="insert"}}
+			</div>	
+ #}
+
   <button>Click Me</button>
   <p>You've pressed the button {{counter}} times.</p>
 </template>
@@ -34,7 +42,8 @@
 </template>
 
 <template name="idea">
-	<li>
+	<li class="list-group-item">
 		<a href="{{pathFor 'ideaDetail'}}"> {{title}} </a>
+		<div class="col-xs-1 pull-right "> <a class="badge no-style">  {{votes}} </a> </div>
 	</li>
 </template>

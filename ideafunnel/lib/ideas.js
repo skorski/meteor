@@ -1,17 +1,12 @@
 Ideas = new Mongo.Collection('ideas');
 
-Ideas.attachSchema(new SimpleSchema({
-		title: {
-			type: String,
-			label: 'Title',
-			max: 100
-		},
-		description: {
-			type: String,
-			label: 'Idea Detail',
-			max: 600
-		}
-}));
+// Ideas.attachSchema(new SimpleSchema({
+// 		title: {
+// 			type: String,
+// 			label: 'Title',
+// 			max: 100
+// 		}
+// }));
 
 Ideas.allow({
 	insert: function() {

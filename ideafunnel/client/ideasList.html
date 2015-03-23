@@ -2,6 +2,20 @@
 <template name="ideasList">
 <head>
   <title>Idea Funnel - Specific Idea</title>
+
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( "#accordion" ).accordion({
+      heightStyle: "content"
+    });
+  });
+  </script>
+
 </head>
 
 <body>
@@ -21,22 +35,40 @@
 </template>
 
 <template name="ideaDetail">
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="page-header">
+				<a class="btn btn-success pull-right" href="" role="button">Add Comment </a>
+			<h1><a href="/">{{title}} </a></h1>
+			</div>
+		</div>
+	</div>
+
 	{{id}}
-	<h2> {{title}} </h2>
+	<div class="col-md-6 col-md-offset-2">
+		<form class="new-comment">
+			<input type="text" name="comment" ideaId={{id}} placeholder="Comment" size="80" />
+		</form>
+	</div>
 
-	<form class="new-task">
-		<input type="text" name="comment" ideaId={{id}} placeholder="Add Comment"/>
-	</form>
-
-	<h2> Comments </h2>
-	{{# each comments}}
-			{{> commentRender}}
-	{{/each}}
+	<div class="col-md-8 col-md-offset-2">
+		<h4> Comments </h4>
+		{{# each comments _id}}
+				<div id="accordion">
+					{{> commentRender}}
+				</div>
+		{{/each}}
+	</div>
+</div>
 
 </template>
 
 <template name="commentRender">
-		<li>
-				{{comment}} <i class="fa fa-plus-circle" id='addComment'></i>
-		</li>
+			{{comment}} 
+			<i class="fa fa-plus-circle" id='addComment'></i>
+			
+			<form class="new-task">
+					<input type="text" size="60" name="comment" ideaId={{id}} placeholder="Add Comment"/>
+			</form>
 </template>
