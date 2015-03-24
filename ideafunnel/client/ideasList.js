@@ -7,28 +7,35 @@ if (Meteor.isClient) {
     idea: function() {
       return Ideas.find({_id: this._id}).fetch();
     },
+    comments: function(parentComment) {
+      if(parentComment) {
+        return Comments.find({ideaId: parentComment}).fetch();       
+      }
+    },
+    expandComments: function(arg){
+      console.log('arg ', arg);
+      return false;
+    }
   });
 
-  Template.ideaDetail.comments = function(parentComment) {
-      if(parentComment) {
-        return Comments.find({ideaID: parent}).fetch();       
-      } else {
-        return Comments.find({ideaID: this._id});
-      }
-
+  Template.commentRender.helpers({
+    expandComments: function(arg){
+      console.log('arg', arg);
+      return false;
     }
+  });
+
+  Template.commentRender.events({
+    'click #addComment': function(e) {
+      $(e.target).attr('style', 'display: true;');
+    }
+  });
 
   Template.ideaDetail.events({
     'submit .new-comment': function (event) {
       var text = event.target.comment.value;
       Meteor.call('addComment', text, this._id);
       event.target.value = "";
-      return false;
-    },
-    'click #addComment': function (event) {
-      console.log("add nested comment");
-      // show a floating input text box
-      console.log(this._id);
       return false;
     }
   });

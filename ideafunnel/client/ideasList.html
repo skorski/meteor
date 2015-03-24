@@ -48,7 +48,7 @@
 	{{id}}
 	<div class="col-md-6 col-md-offset-2">
 		<form class="new-comment">
-			<input type="text" name="comment" ideaId={{id}} placeholder="Comment" size="80" />
+			<textarea rows="1" cols="1" name="comment" ideaId={{id}} placeholder="Comment"> </textarea>
 		</form>
 	</div>
 
@@ -65,10 +65,14 @@
 </template>
 
 <template name="commentRender">
-			{{comment}} 
-			<i class="fa fa-plus-circle" id='addComment'></i>
+
+			<a href="javascript:void(0)" class="expand" onclick="return expandComments(this)">[-]</a> {{comment}} 
+			<a href="javascript:void(0)">
+				<i class="fa fa-plus-circle" id='addComment'></i>
+			</a>
 			
-			<form class="new-task">
+			<form class="new-task" style="display: none;">
 					<input type="text" size="60" name="comment" ideaId={{id}} placeholder="Add Comment"/>
+					<button type="submit" class=""></button>
 			</form>
 </template>
