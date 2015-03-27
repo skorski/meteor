@@ -9,11 +9,20 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="page-header">
-						<a class="btn btn-success pull-right" href="" role="button">Add Idea </a>
+						<a href="" id="AddIdea" class="btn btn-success pull-right"  role="button">Add Idea </a>
+
 					<h1><a href="/">Awesome Ideas </a></h1>
 					</div>
 				</div>
 			</div>
+
+			{{#if showAddIdea}}
+				<div class="{{addFormClass}}" id="addIdeaForm">
+					<div class="col-md-6 col-md-offset-2">
+						{{> addIdeaForm}}
+					</div>
+				</div>
+			{{/if}}
 
 		<div class="col-md-6 col-md-offset-2">
 				{{> ideaBlock}}
@@ -23,15 +32,18 @@
 	</body>
 </template>
 
-<template name="hello">
+<template name="addIdeaForm">
 
-{# 		  <div class="panel-body">
-				{{> quickForm collection="Ideas" id="insertIdeaForm" type="insert"}}
-			</div>	
- #}
+		<form class="new-idea">
+			<div class="input-group input-group-lg">
+				<span class="basic-addon1">Idea</span>
+				<input class="form-control" type="text" size="60" name="idea" placeholder="type idea..." aria-describedby="basic-addon1" id="newIdeaText"/>
 
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+				<button type="submit" class="btn btn-success pull-right submitNewIdea">Submit Idea</button>
+				<br><br><br>
+			</div>
+		</form>
+
 </template>
 
 

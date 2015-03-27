@@ -1,19 +1,39 @@
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
+  Template.home.events({
+    "click #AddIdea": function (e, tmpl){
+      if(Session.get('showAddIdea')){
+        Session.set('showAddIdea', false);
+      } else {
+        Session.set('showAddIdea', true);
+      }
     }
   });
 
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
+  Template.home.helpers({
+    showAddIdea: function() {
+      return Session.equals('showAddIdea', true);
+    },
+    addFormClass: function() {
+      return "test";
     }
   });
+
+  Template.addIdeaForm.events({
+    "click #submitNewIdea": function (e, tmpl){
+      var idea = document.getEleementByID('newIdeaText');
+      console.log("Adding idea ", idea);
+      Meteor.call('createIdea', idea);
+    }
+  })
+
+  Template.home.rendered = function (){
+    $(this.firstNode).animate({opacity:1, top:0}, 1000);
+    console.log("render event");
+    $('div.addIdeaForm').on('click', function() {
+      console.log('addIdeaClicked');
+    });
+  }
 
   Template.ideaBlock.helpers({
     ideas: function () {
