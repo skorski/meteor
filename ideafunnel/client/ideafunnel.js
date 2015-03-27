@@ -20,19 +20,16 @@ if (Meteor.isClient) {
   });
 
   Template.addIdeaForm.events({
-    "click #submitNewIdea": function (e, tmpl){
-      var idea = document.getEleementByID('newIdeaText');
-      console.log("Adding idea ", idea);
+    "click #submitNewIdea": function (e){
+      var idea = document.getElementById('newIdeaText').value;
       Meteor.call('createIdea', idea);
+      document.getElementById('newIdeaText').value = ""
+      return false;
     }
-  })
+  });
 
   Template.home.rendered = function (){
-    $(this.firstNode).animate({opacity:1, top:0}, 1000);
-    console.log("render event");
-    $('div.addIdeaForm').on('click', function() {
-      console.log('addIdeaClicked');
-    });
+   
   }
 
   Template.ideaBlock.helpers({
