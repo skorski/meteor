@@ -55,7 +55,14 @@
 
 <template name="idea">
 	<li class="list-group-item">
-		<a href="{{pathFor 'ideaDetail'}}"> {{title}} </a>
-		<div class="col-xs-1 pull-right "> <a class="badge no-style">  {{votes}} </a> </div>
+		<div class="col-xs-1 pull-left">
+			{{# if notVoted}}
+				<i class="fa fa-thumbs-up"></i>
+			{{else}}
+				<i class="fa fa-thumbs-up-alt"></i>
+			{{/if}}
+		</div>
+			<a href="{{pathFor 'ideaDetail'}}"> {{title}} </a>
+		<div class="col-xs-1 pull-right "> <a class="badge">  {{votes}} </a> </div>
 	</li>
 </template>

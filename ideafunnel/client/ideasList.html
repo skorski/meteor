@@ -39,18 +39,20 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="page-header">
-				<a class="btn btn-success pull-right" href="" role="button">Add Comment </a>
+				<a class="btn btn-success pull-right" id="add-comment-show" href="" role="button">Add Comment </a>
 			<h1><a href="/">{{title}} </a></h1>
 			</div>
 		</div>
 	</div>
 
-	{{id}}
+	{{#if showMainComment}}
 	<div class="col-md-6 col-md-offset-2">
-		<form class="new-comment">
-			<textarea rows="1" cols="1" name="comment" ideaId={{id}} placeholder="Comment"> </textarea>
-		</form>
+			<form class="new-comment">
+				<textarea class="comment-box" rows="1" cols="1" name="comment" ideaId={{id}} placeholder="Comment"> </textarea>
+				<button type="submit" class="btn btn-success">submit</button>
+			</form>
 	</div>
+	{{/if}}
 
 	<div class="col-md-8 col-md-offset-2">
 		<h4> Comments </h4>
@@ -66,13 +68,16 @@
 
 <template name="commentRender">
 
-			<a href="javascript:void(0)" class="expand" onclick="return expandComments(this)">[-]</a> {{comment}} 
-			<a href="javascript:void(0)">
+			<a href="" class="expand" onclick="">[-]</a> 
+			{{comment}} 
+			<a href="" id="add-nested-comment">
 				<i class="fa fa-plus-circle" id='addComment'></i>
 			</a>
 			
-			<form class="new-task" style="display: none;">
-					<input type="text" size="60" name="comment" ideaId={{id}} placeholder="Add Comment"/>
-					<button type="submit" class=""></button>
+			{{#if showNestedComment}}
+			<form class="new-detail-comment">
+				<textarea class="comment-box" rows="1" cols="1" name="detailedcomment" ideaId={{id}} placeholder="Comment"> </textarea>
+				<button type="submit" class="btn btn-success">submit</button>
 			</form>
+			{{/if}}
 </template>

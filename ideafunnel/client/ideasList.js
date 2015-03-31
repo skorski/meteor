@@ -15,40 +15,61 @@ if (Meteor.isClient) {
     expandComments: function(arg){
       console.log('arg ', arg);
       return false;
-    }
-  });
-
-  Template.commentRender.helpers({
-    expandComments: function(arg){
-      console.log('arg', arg);
-      return false;
-    }
-  });
-
-  Template.commentRender.events({
-    'click #addComment': function(e) {
-      $(e.target).attr('style', 'display: true;');
+    },
+    showMainComment: function() {
+      return Session.equals('showAddIdea', true);
     }
   });
 
   Template.ideaDetail.events({
-    'submit .new-comment': function (event) {
+     'submit .new-comment': function (event) {
       var text = event.target.comment.value;
       Meteor.call('addComment', text, this._id);
-      event.target.value = "";
+      event.target.comment.value = "";
+      Session.set('showAddIdea', false);
       return false;
+    },
+    'click #add-comment-show': function(event, tmpl) {
+      if(Session.get('showAddIdea')){
+        Session.set('showAddIdea', false);
+      } else {
+        Session.set('showAddIdea', true);        
+      }
     }
   });
 
-  Template.commentRender.created = function () {
-    this.showChildren = false;
-  }
+
+
+  Template.commentRender.helpers({
+    showNestedComment: function() {
+      return Session.equals('selectedComment', this._id);
+    },
+    nestedCommentID: function() {
+      return this._id;
+    },
+    comments: function(parentComment){
+      if(parentComment) {
+        return Comments.find({ideaId: parentComment}).fetch();
+      } else
+        return Comments.find({ideaId: this._id});
+    },
+    id: function(){
+      return this._id;
+    }
+  });
 
   Template.commentRender.events({
-    'click #addComment': function(event, template) {
-      template.showChildren = false;
-    }
+    'click #add-nested-comment': function(event, tmpl) {
+      Session.set('selectedComment', this._id);
+    },
+    'submit .new-detail-comment': function (event) {
+      var text = event.target.detailedcomment.value;
 
-  })
+      Meteor.call('addComment', text, this._id);
+      event.target.detailedcomment.value = "";
+      Session.set('selectedComment', '1');
+      return false;
+    }
+  });
 
 }

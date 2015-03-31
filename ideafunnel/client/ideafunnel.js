@@ -37,4 +37,11 @@ if (Meteor.isClient) {
       return Ideas.find({}, {sort: {votes: -1, createdAt: -1}}).fetch();
     }
   });
+
+
+  Template.idea.helpers({
+    notVoted: function () {
+      return true;
+    }
+  });
 }
