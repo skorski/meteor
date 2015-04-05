@@ -54,10 +54,22 @@
 	</div>
 	{{/if}}
 
+	<div class="col-md-8 col-md-offset-2 panel panel-default">
+		<div class="panel-body">
+			{{> ideaDescription}}
+		</div>
+	</div>
+
+	<div class="col-md-8 col-md-offset-2 panel panel-default">
+		<div class="panel-body">
+			{{> ideaTeamDetail}}
+		</div>
+	</div>
+
 	<div class="col-md-8 col-md-offset-2">
 		<h4> Comments </h4>
 		{{# each comments _id}}
-				<div id="accordion">
+				<div id="Comment Main" >
 					{{> commentRender}}
 				</div>
 		{{/each}}
@@ -66,18 +78,50 @@
 
 </template>
 
+<template name="ideaDescription">
+	description of idea here
+</template>
+
+<template name="ideaTeamDetail">
+	show team names here
+</template>
+
 <template name="commentRender">
 
-			<a href="" class="expand" onclick="">[-]</a> 
-			{{comment}} 
-			<a href="" id="add-nested-comment">
-				<i class="fa fa-plus-circle" id='addComment'></i>
-			</a>
+	<div class="panel panel-default">
+		<div class="panel-body comment-panel">
+			<div class="col-xs-1 pull-left">
+				<a href="" class="expand"><i class="fa fa-chevron-circle-down"></i></a>
+			</div>
 			
+			{{comment}}
+			
+			<div class="col-xs-3 pull-right ">
+				<a href="" id="add-nested-comment"> reply </a>
+				<i class="fa fa-thumbs-o-up" id="upvoteComment"></i>
+					<i class="fa fa-thumbs-up"></i>
+				<a href="" id="removeComment">	
+					<i class="fa fa-trash-o" id="removeComment"></i>
+				</a>
+			</div>
+
 			{{#if showNestedComment}}
+			
 			<form class="new-detail-comment">
-				<textarea class="comment-box" rows="1" cols="1" name="detailedcomment" ideaId={{id}} placeholder="Comment"> </textarea>
-				<button type="submit" class="btn btn-success">submit</button>
+				<textarea class="col-xs-12" name="detailedcomment" ideaId={{id}} placeholder="Comment"> </textarea>
+				<button type="submit" class="col-xs-2 pull-right btn btn-success">Save</button>
 			</form>
 			{{/if}}
+		</div>
+	</div>
+
+
+			{{# each comments _id}}
+				<div id="nestedComment" class="col-md-offset-1">
+					{{> commentRender}}
+					
+				</div>
+			{{/each}}
+
+
 </template>

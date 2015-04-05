@@ -84,11 +84,22 @@ This will start the download for the basic meteor app.
 
 7) styling
 	- Meteor was built for rapid prototyping.  We can also do amazing things for styling
-	- Implementing fameo.us
+	- Implementing bootstrap
+	- add the packages
+		- add less
+			- 'meteor add less'
+		- add bootstrap
+			- 'meteor add nemo64:bootstrap'
+		- grab a stylesheet boiler page
+			- 'cd ideafunnel/client'
+			- 'git clone https://github.com/DerMambo/stylesheets.git'
+		- we to edit the custom.bootstrap.json file
 
+	- Make things beautiful
+		-start on the homepage 
+		-add font awesome icons
 
-
-
+8) 
 
 Things to cover
 - Styling

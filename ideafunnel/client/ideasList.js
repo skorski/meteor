@@ -44,9 +44,6 @@ if (Meteor.isClient) {
     showNestedComment: function() {
       return Session.equals('selectedComment', this._id);
     },
-    nestedCommentID: function() {
-      return this._id;
-    },
     comments: function(parentComment){
       if(parentComment) {
         return Comments.find({ideaId: parentComment}).fetch();
@@ -60,7 +57,23 @@ if (Meteor.isClient) {
 
   Template.commentRender.events({
     'click #add-nested-comment': function(event, tmpl) {
+      console.log(this._id);
+      // refactored function because of nesting. Item runs twice with nest and will hide the comment on the second pass.
       Session.set('selectedComment', this._id);
+      // if(Session.equals('selectedComment', this._id)) {
+      //   // here we set it to a different value to hide the text box
+      //   console.log("Same button selected. Setting id =1");
+      //   Session.set('selectedComment','1');
+      // } else {
+      //   console.log("different box selected, setting to: ", this._id);
+      //   Session.set('selectedComment', this._id);
+      // }
+    },
+    'click #removeComment': function(event) {
+     // if(confirm("Are you sure you want to delete this comment"))
+      {
+        Meteor.call('removeComment', this._id);
+      } 
     },
     'submit .new-detail-comment': function (event) {
       var text = event.target.detailedcomment.value;

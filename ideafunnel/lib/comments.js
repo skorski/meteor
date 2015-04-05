@@ -10,7 +10,7 @@ Comments.allow({
 	remove: function() {
 		return true;
 	}
-
+	
 });
 
 
@@ -26,7 +26,10 @@ Meteor.methods ({
 
 	},
 	removeComment: function(ideaID) {
-		Comments.remove(ideaID);
+		// don't delete the post because that can mess up the nested comments
+		// also give the user the option to re-instate
+		privateComment = Comments.find({_id: ideaID}).fetch()[0].comment;
+		Comments.update({_id: ideaID}, {$set: {comment: "deleted", privateComment: privateComment}});
 	},
 	upvoteComment: function(ideaID) {
 		Comments.update(ideaID, {$inc: {votes: 1}});
