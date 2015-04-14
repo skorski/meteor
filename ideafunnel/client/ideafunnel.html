@@ -36,7 +36,6 @@
 
 		<form class="new-idea">
 			<div class="input-group input-group-lg">
-				<span class="input-group-addon" id="basic-addon1">Idea</span>
 				<input class="form-control" type="text" size="60" name="idea" placeholder="type idea..." aria-describedby="basic-addon1" id="newIdeaText"/>
 			</div>
 		
@@ -57,9 +56,11 @@
 	<li class="list-group-item">
 		<div class="col-xs-1 pull-left">
 			{{# if notVoted}}
-				<i class="fa fa-thumbs-up"></i>
+				<a href="upvote">
+					<i class="fa fa-thumbs-up"></i>
+				</a>
 			{{else}}
-				<i class="fa fa-thumbs-up-alt"></i>
+				<i id="downvote" class="fa fa-thumbs-up-alt"></i>
 			{{/if}}
 		</div>
 			<a href="{{pathFor 'ideaDetail'}}"> {{title}} </a>

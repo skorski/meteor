@@ -28,7 +28,7 @@ Meteor.methods ({
 	removeComment: function(ideaID) {
 		// don't delete the post because that can mess up the nested comments
 		// also give the user the option to re-instate
-		privateComment = Comments.find({_id: ideaID}).fetch()[0].comment;
+		privateComment = Comments.findOne({_id: ideaID}).comment;
 		Comments.update({_id: ideaID}, {$set: {comment: "deleted", privateComment: privateComment}});
 	},
 	upvoteComment: function(ideaID) {

@@ -44,4 +44,11 @@ if (Meteor.isClient) {
       return true;
     }
   });
+
+  Template.idea.events({
+    "click #upvote": function(e){
+      console.log(this._id);
+      upvoteIdea(this._id);
+    }
+  })
 }

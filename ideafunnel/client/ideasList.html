@@ -54,14 +54,14 @@
 	</div>
 	{{/if}}
 
-	<div class="col-md-8 col-md-offset-2 panel panel-default">
-		<div class="panel-body">
+	<div class="col-md-8 col-md-offset-2 panel panel-default" id="idea-description-main">
+		<div class="panel-body" >
 			{{> ideaDescription}}
 		</div>
 	</div>
 
 	<div class="col-md-8 col-md-offset-2 panel panel-default">
-		<div class="panel-body">
+		<div class="panel-body" id="team-detail">
 			{{> ideaTeamDetail}}
 		</div>
 	</div>
@@ -69,7 +69,7 @@
 	<div class="col-md-8 col-md-offset-2">
 		<h4> Comments </h4>
 		{{# each comments _id}}
-				<div id="Comment Main" >
+				<div id="comment-div" >
 					{{> commentRender}}
 				</div>
 		{{/each}}
@@ -79,7 +79,29 @@
 </template>
 
 <template name="ideaDescription">
-	description of idea here
+	<div id='idea-description-body'>
+
+		{{#if ideaDescriptionInput}}
+			<form class="change-description">
+				<textarea class="col-xs-10 col-xs-offset-1" name="idea-description-input" placeholder={{description}}> {{description}}</textarea>
+				<div id="buttons" class="col-xs-11">
+					<button type="submit" class="col-xs-3 pull-right btn btn-success">Save</button>
+					<a href=""> 
+						<input type="button" value="Cancel" id="cancel-description" class="col-xs-3 pull-right btn btn-success" />
+					</a>
+				</div>
+			</form>
+		{{else}}
+			<div id="description-text" class="col-xs-10 col-xs-offset-1">
+				{{description}}
+			</div>
+		{{/if}}
+
+		{{#if ideaDescriptionEdit}}
+		<a href="" id="edit-description"><i class="fa fa-pencil"></i></a>
+		{{/if}}
+
+	</div>
 </template>
 
 <template name="ideaTeamDetail">

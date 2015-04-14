@@ -25,6 +25,7 @@ Meteor.methods ({
 	createIdea: function(idea) {
 		Ideas.insert({
 			title: idea,
+			description: "Enter Description",
 			votes: 0,
 			createdAt: new Date()
 			});
@@ -34,6 +35,9 @@ Meteor.methods ({
 		Ideas.remove(ideaID);
 	},
 	upvoteIdea: function(ideaID) {
-		Ideas.update(ideaID, {$inc: {votes: 1}});
+		Ideas.update(ideaID, {$push: {name: 'test user', voteTime: new Date()}});
+	},
+	updateDescription: function(ideaID, description	){
+		Ideas.update(ideaID, {$set: {description: description}});
 	}
 });
