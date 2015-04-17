@@ -25,6 +25,8 @@ Meteor.methods ({
 	createIdea: function(idea) {
 		Ideas.insert({
 			title: idea,
+			user: Meteor.userID,
+			userName: Meteor.user().username,
 			description: "Enter Description",
 			votes: 0,
 			createdAt: new Date()

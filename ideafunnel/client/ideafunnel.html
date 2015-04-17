@@ -9,8 +9,12 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="page-header">
+					{{# if currentUser}}
 						<a href="" id="AddIdea" class="btn btn-success pull-right"  role="button">Add Idea </a>
-
+					{{else}}
+						<a href="" id="Login" class="btn btn-success pull-right"  role="button">Login </a>
+					{{/if}}
+					
 					<h1><a href="/">Awesome Ideas </a></h1>
 					</div>
 				</div>
@@ -20,6 +24,14 @@
 				<div class="{{addFormClass}}" id="addIdeaForm">
 					<div class="col-md-6 col-md-offset-2">
 						{{> addIdeaForm}}
+					</div>
+				</div>
+			{{/if}}
+
+			{{#if showLogin}}
+				<div class="{{addFormClass}}" id="addLogin">
+					<div class="col-md-6 col-md-offset-2">
+						{{> loginButtons}}
 					</div>
 				</div>
 			{{/if}}
