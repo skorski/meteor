@@ -1,14 +1,17 @@
-<template name="home">
+<template name="IdeaFunnel">
 	<head>
 	  <title>Idea Funnel</title>
 	</head>
 
 	<body>
 		
+		{{> HeaderBar}}
+
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="page-header">
+					
 					{{# if currentUser}}
 						<a href="" id="AddIdea" class="btn btn-success pull-right"  role="button">Add Idea </a>
 					{{else}}
@@ -23,7 +26,8 @@
 			{{#if showAddIdea}}
 				<div class="{{addFormClass}}" id="addIdeaForm">
 					<div class="col-md-6 col-md-offset-2">
-						{{> addIdeaForm}}
+						{{> AddIdeaForm}}
+						{{> loginButtons}}
 					</div>
 				</div>
 			{{/if}}
@@ -31,34 +35,21 @@
 			{{#if showLogin}}
 				<div class="{{addFormClass}}" id="addLogin">
 					<div class="col-md-6 col-md-offset-2">
-						{{> loginButtons}}
+						
 					</div>
 				</div>
 			{{/if}}
 
 		<div class="col-md-6 col-md-offset-2">
-				{{> ideaBlock}}
+				{{> IdeaBlock}}
 		</div>		
 		
 		</div>
 	</body>
 </template>
 
-<template name="addIdeaForm">
 
-		<form class="new-idea">
-			<div class="input-group input-group-lg">
-				<input class="form-control" type="text" size="60" name="idea" placeholder="type idea..." aria-describedby="basic-addon1" id="newIdeaText"/>
-			</div>
-		
-		<button id="submitNewIdea" class="btn btn-success pull-right">Submit Idea</button>
-		
-		</form>
-
-</template>
-
-
-<template name="ideaBlock">
+<template name="IdeaBlock">
 		{{#each ideas}}
 			{{> idea}}
 		{{/each}}

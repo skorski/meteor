@@ -83,8 +83,8 @@ mrt:moment@2.8.1
 mrt:underscore-string-latest@2.3.3
 msavin:mongol@0.5.5
 natestrauser:font-awesome@4.3.0
-nemo64:bootstrap@3.3.1_1
-nemo64:bootstrap-data@3.3.1_1
+nemo64:bootstrap@3.3.4_2
+nemo64:bootstrap-data@3.3.4_1
 npm-bcrypt@0.7.7
 observe-sequence@1.0.4
 ordered-dict@1.0.2

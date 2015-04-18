@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
 
-  Template.home.events({
+  Template.IdeaFunnel.events({
     "click #AddIdea": function (e, tmpl){
       if(Session.get('showAddIdea')){
         Session.set('showAddIdea', false);
@@ -17,7 +17,7 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.home.helpers({
+  Template.IdeaFunnel.helpers({
     showAddIdea: function() {
       return Session.equals('showAddIdea', true);
     },
