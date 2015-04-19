@@ -27,7 +27,7 @@ Meteor.methods ({
 			title: idea,
 			user: Meteor.userID,
 			userName: Meteor.user().username,
-			description: "Enter Description",
+			description: "Please add a description",
 			votes: 0,
 			createdAt: new Date()
 			});

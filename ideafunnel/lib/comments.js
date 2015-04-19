@@ -20,7 +20,9 @@ Meteor.methods ({
 			comment: comment,
 			ideaId: ideaId,
 			votes: 0,
-			createdAt: new Date()
+			createdAt: new Date(),
+			owner: Meteor.userId(),
+			username: Meteor.user().username
 			});
 		console.log("New Comment Inserted: " + ideaId);
 

@@ -41,32 +41,9 @@
 			{{/if}}
 
 		<div class="col-md-6 col-md-offset-2">
-				{{> IdeaBlock}}
+				{{> IdeaListing}}
 		</div>		
 		
 		</div>
 	</body>
-</template>
-
-
-<template name="IdeaBlock">
-		{{#each ideas}}
-			{{> idea}}
-		{{/each}}
-</template>
-
-<template name="idea">
-	<li class="list-group-item">
-		<div class="col-xs-1 pull-left">
-			{{# if notVoted}}
-				<a href="upvote">
-					<i class="fa fa-thumbs-up"></i>
-				</a>
-			{{else}}
-				<i id="downvote" class="fa fa-thumbs-up-alt"></i>
-			{{/if}}
-		</div>
-			<a href="{{pathFor 'ideaDetail'}}"> {{title}} </a>
-		<div class="col-xs-1 pull-right "> <a class="badge">  {{votes}} </a> </div>
-	</li>
 </template>

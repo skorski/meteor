@@ -1,16 +1,17 @@
 if (Meteor.isClient) {
 
-  Template.ideaDetail.helpers({
+  Template.IdeaDetail.helpers({
     id: function () {
       return this._id;
     },
     idea: function() {
       return Ideas.find({_id: this._id}).fetch();
     },
-    comments: function(parentComment) {
-      if(parentComment) {
-        return Comments.find({ideaId: parentComment}).fetch();       
-      }
+    comments: function() {
+        return Comments.find({ideaId: this._id}).fetch();
+    },
+    ideaDescriptionEdit: function(){
+      return Session.equals(ideaDescriptionEdit, true);
     },
     expandComments: function(arg){
       console.log('arg ', arg);
@@ -21,14 +22,7 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.ideaDetail.events({
-     'submit .new-comment': function (event) {
-      var text = event.target.comment.value;
-      Meteor.call('addComment', text, this._id);
-      event.target.comment.value = "";
-      Session.set('showAddIdea', false);
-      return false;
-    },
+  Template.IdeaDetail.events({
     'click #add-comment-show': function(event, tmpl) {
       if(Session.get('showAddIdea')){
         Session.set('showAddIdea', false);
@@ -45,7 +39,8 @@ if (Meteor.isClient) {
   });
 
 
-  Template.ideaDescription.helpers({
+
+  Template.IdeaDescription.helpers({
     ideaDescriptionEdit: function() {
       return Session.equals('ideaDescriptionEdit', true);
     },
@@ -58,15 +53,12 @@ if (Meteor.isClient) {
 
   });
 
-  Template.ideaDescription.events({
+  Template.IdeaDescription.events({
     'click #description-text': function(){
       Session.set('ideaDescriptionInput', true);
     },
     'click #edit-description': function() {
       Session.set('ideaDescriptionInput', true);
-    },
-    'click #cancel-description': function() {
-      Session.set('ideaDescriptionInput', false);
     },
     'submit .change-description': function(e) {
       description = document.getElementsByName('idea-description-input')[0].value;
@@ -75,4 +67,5 @@ if (Meteor.isClient) {
       return false;
      }
   });
+
 }

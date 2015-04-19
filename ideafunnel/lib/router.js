@@ -1,6 +1,6 @@
 Router.map( function () {
 
-	this.route('IdeaFunnel', {path: '/'});
+	this.route('Home', {path: '/'});
 
 	this.route('ideasList', {path: '/ideas'});
 

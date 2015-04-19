@@ -1,0 +1,46 @@
+<template name="CommentRender">
+
+	<div class="panel panel-default">
+		<div class="panel-body comment-panel">
+			<div class="col-xs-1 pull-left">
+				<a href="" class="expand"><i class="fa fa-chevron-circle-down"></i></a>
+			</div>
+			
+			{{comment}} - {{comment.username}}
+
+			<div class="col-xs-3 pull-right ">
+				<a href="" id="add-nested-comment"> reply </a>
+				<i class="fa fa-thumbs-o-up" id="upvoteComment"></i>
+					<i class="fa fa-thumbs-up"></i>
+				<a href="" id="removeComment">	
+					<i class="fa fa-trash-o" id="removeComment"></i>
+				</a>
+			</div>
+
+			{{#if showNestedComment}}
+				{{> CommentBox parentId=this._id}}
+			{{/if}}
+		</div>
+	</div>
+
+			{{# each comments _id}}
+				<div id="nestedComment" class="col-md-offset-1">
+					{{> CommentRender}}
+				</div>
+			{{/each}}
+
+		{{log "CommentRender Template"}}
+
+</template>
+
+<template name="CommentBox">
+	<form>
+		<div id="comment-box" class="col-xs-12">
+		<input type="text" class="form-control" id="comment-box-input" placeholder="Add comment" >
+		<button id="save-new-comment" type="submit" class="col-xs-3 btn btn-default pull-right" value={{parentId}}>Save</button>
+		
+		{{log "CommentBox Template"}}
+
+		</div>
+	</form>
+</template>

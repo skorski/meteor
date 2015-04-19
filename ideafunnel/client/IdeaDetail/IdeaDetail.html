@@ -1,0 +1,83 @@
+<template name="IdeaDetail">
+
+	{{> HeaderBar}}
+
+	<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="page-header">
+				<h1>{{title}}</h1>
+			</div>
+		</div>
+	</div>
+
+	{{#if showMainComment}}
+	<div class="col-md-6 col-md-offset-2">
+		{{> CommentBox}}
+	</div>
+	{{/if}}
+
+	<div class="col-md-8 col-md-offset-2 panel panel-default" id="idea-description-main">
+		<div class="panel-body" >
+			{{> IdeaDescription}}
+		</div>
+	</div>
+
+	<div class="col-md-8 col-md-offset-2 panel panel-default">
+		<div class="panel-body" id="team-detail">
+			{{> ideaTeamDetail}}
+		</div>
+	</div>
+
+	<div class="col-md-8 col-md-offset-2">
+		<h4> Comments </h4>
+		{{> CommentBox parentId=this._id}}
+		{{# if comments}}
+			{{# each comments}}
+					<div id="comment-div" >
+						{{> CommentRender}}
+					</div>
+			{{/each}}
+		{{else}}
+			{{# if currentUser}}
+			<div id="first_comment">
+				<h6> Be the first to join the discussion </h6>
+				{{> CommentBox parentId=this._id}}
+			</div>
+			{{else}}
+				<h6> No Comments Yet.  Log-in to start the discussion </h6>
+			{{/if}}
+		{{/if}}
+	</div>
+</div>
+
+</template>
+
+<template name="IdeaDescription">
+	<div id='idea-description-body'>
+		{{#if ideaDescriptionInput}}
+			<form class="change-description">
+				<textarea class="col-xs-12" name="idea-description-input" placeholder={{description}}> {{description}}</textarea>
+				<div id="buttons" class="col-xs-12">
+					<button type="submit" class="pull-right btn btn-success">Save</button>
+				</div>
+			</form>
+		{{else}}
+			<div id="description-text" class="col-xs-11">
+				{{description}}
+			</div>
+		{{/if}}
+
+		{{#if ideaDescriptionEdit}}
+			{{#unless ideaDescriptionInput}}
+				<a href="" id="edit-description"><i class="fa fa-pencil"></i></a>
+			{{/unless}}
+		{{/if}}
+
+	</div>
+</template>
+
+<template name="ideaTeamDetail">
+	show team names here
+</template>
+
